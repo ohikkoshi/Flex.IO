@@ -13,11 +13,7 @@ namespace Flex.IO
 		public FlexWriter() => stream = new MemoryStream();
 		public FlexWriter(byte[] buffer) => stream = new MemoryStream(buffer);
 		public FlexWriter(int capacity) => stream = new MemoryStream(capacity);
-
-		~FlexWriter()
-		{
-			Dispose();
-		}
+		~FlexWriter() => Dispose();
 
 		public void Dispose()
 		{
@@ -47,40 +43,14 @@ namespace Flex.IO
 			return null;
 		}
 
-		public void Write(byte[] bytes)
-		{
-			stream?.Write(bytes, 0, bytes.Length);
-		}
-
-		public void Write(byte value)
-		{
-			stream?.WriteByte(value);
-		}
-
-		public void Write(short value)
-		{
-			Write(BitConverter.GetBytes(value));
-		}
-
-		public void Write(int value)
-		{
-			Write(BitConverter.GetBytes(value));
-		}
-
-		public void Write(long value)
-		{
-			Write(BitConverter.GetBytes(value));
-		}
-
-		public void Write(float value)
-		{
-			Write(BitConverter.GetBytes(value));
-		}
-
-		public void Write(double value)
-		{
-			Write(BitConverter.GetBytes(value));
-		}
+		public void Write(byte[] bytes) => stream?.Write(bytes, 0, bytes.Length);
+		public void Write(byte value) => stream?.WriteByte(value);
+		public void Write(short value) => Write(BitConverter.GetBytes(value));
+		public void Write(int value) => Write(BitConverter.GetBytes(value));
+		public void Write(long value) => Write(BitConverter.GetBytes(value));
+		public void Write(float value) => Write(BitConverter.GetBytes(value));
+		public void Write(double value) => Write(BitConverter.GetBytes(value));
+		public void Write(bool value) => Write(BitConverter.GetBytes(value));
 
 		public void Write(string value)
 		{

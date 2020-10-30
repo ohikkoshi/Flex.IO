@@ -10,16 +10,9 @@ namespace Flex.IO
 		MemoryStream stream;
 
 
+		private FlexReader() { }
 		public FlexReader(byte[] buffer) => stream = new MemoryStream(buffer);
-
-		FlexReader()
-		{
-		}
-
-		~FlexReader()
-		{
-			Dispose();
-		}
+		~FlexReader() => Dispose();
 
 		public void Dispose()
 		{
@@ -90,6 +83,15 @@ namespace Flex.IO
 			}
 
 			return 0;
+		}
+
+		public bool Bool()
+		{
+			if (TryRead(sizeof(bool), out byte[] data)) {
+				return BitConverter.ToBoolean(data, 0);
+			}
+
+			return false;
 		}
 
 		public string String()
