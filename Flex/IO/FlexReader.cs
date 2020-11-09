@@ -22,6 +22,13 @@ namespace Flex.IO
 			}
 		}
 
+		public void Reset()
+		{
+			Debug.Assert(stream != null);
+
+			stream.Position = 0L;
+		}
+
 		public bool TryRead(int length, out byte[] data)
 		{
 			Debug.Assert(stream != null);
